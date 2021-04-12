@@ -4,9 +4,10 @@ import com.divya.microservice.student.data.StudentEntity;
 import com.divya.microservice.student.shared.StudentDao;
 import com.divya.microservice.student.vo.ResponseTemplateVO;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface StudentService extends UserDetailsService {
     StudentDao createStudent(StudentDao studentDao);
 

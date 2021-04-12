@@ -5,8 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/Eureka-service-registry/Eureka-service-registry.iml" filepath="$PROJECT_DIR$/Eureka-service-registry/Eureka-service-registry.iml" />
       <module fileurl="file://$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" filepath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/dashboard-service/dashboard-service.iml" filepath="$PROJECT_DIR$/dashboard-service/dashboard-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/marks-service/marks-service.iml" filepath="$PROJECT_DIR$/marks-service/marks-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/student-service/student-service.iml" filepath="$PROJECT_DIR$/student-service/student-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/marks-service/user-service.iml" filepath="$PROJECT_DIR$/marks-service/user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/subject-service/subject-service.iml" filepath="$PROJECT_DIR$/subject-service/subject-service.iml" />
     </modules>
   </component>
 </project>

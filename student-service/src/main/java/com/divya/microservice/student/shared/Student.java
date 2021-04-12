@@ -11,7 +11,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Student implements Serializable {
     private static final long serialVersionUID = -6975627760989470843L;
-    private String studentId;
     private String studentName;
     private String password;
     private String encryptedPassword;

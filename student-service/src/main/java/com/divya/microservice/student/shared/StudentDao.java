@@ -14,6 +14,5 @@ public class StudentDao implements Serializable {
     private String studentName;
     private String password;
     private String email;
-    private String studentId;
     private String encryptedPassword;
 }

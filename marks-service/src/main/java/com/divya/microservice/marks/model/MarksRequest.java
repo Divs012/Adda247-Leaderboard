@@ -11,16 +11,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class MarksRequest {
     @NotNull
-    private long studentId;
+    private Long studentId;
     @NotNull
-    private int subject1;
+    private String subjectId;
     @NotNull
-    private int subject2;
-    @NotNull
-    private int subject3;
-    @NotNull
-    private int subject4;
-    @NotNull
-    private int subject5;
+    private int marks;
 
 }

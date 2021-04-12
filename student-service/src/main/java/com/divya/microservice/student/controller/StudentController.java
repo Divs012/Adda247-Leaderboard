@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/student")
@@ -38,14 +37,16 @@ Logger logger= LoggerFactory.getLogger(StudentController.class);
 
     public ResponseEntity<StudentResponse> createStudent(@Valid @RequestBody StudentRequest studentRequest) {
         logger.info("Inside add Student");
-        studentRequest.setStudentId(UUID.randomUUID().toString());
+
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         StudentDao studentDao = modelMapper.map(studentRequest, StudentDao.class);
 
         StudentDao createdStudent = studentService.createStudent(studentDao);
         StudentResponse returnValue = modelMapper.map(createdStudent, StudentResponse.class);
+        logger.info("Student Created", returnValue);
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
+
 
 
     }
@@ -54,6 +55,7 @@ Logger logger= LoggerFactory.getLogger(StudentController.class);
     @GetMapping("/{email}")
     @Cacheable(value = "Student", key = "#email")
     public ResponseTemplateVO getStudentWithMarks(@PathVariable(value = "email") String email) {
+        logger.info("Getting student with  email{}", email);
         return studentService.getStudentWithMarks(email);
 
 
@@ -61,14 +63,15 @@ Logger logger= LoggerFactory.getLogger(StudentController.class);
 
     @GetMapping("/all")
     public ResponseEntity<List<StudentEntity>> getAll() {
+        logger.info("Fetching Student", studentService.getAll());
         return ResponseEntity.ok(studentService.getAll());
     }
 
 
     @DeleteMapping("/delete/{id}")
     @CacheEvict(value = "Student", allEntries = true)
-    public void deleteByStudentId(@PathVariable("id") Long id) {
-        studentService.deleteById(id);
+    public void deleteByStudentId(@PathVariable("id") Long studentId) {
+        studentService.deleteById(studentId);
     }
 
    }

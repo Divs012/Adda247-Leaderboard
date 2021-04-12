@@ -19,9 +19,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
+
 public class StudentServiceImpl implements StudentService {
     RestTemplate restTemplate;
     StudentRepository studentRepository;
@@ -37,8 +37,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDao createStudent(StudentDao studentDao) {
-        
-        studentDao.setStudentId(UUID.randomUUID().toString());
+        logger.info("Creating student. Count{}", studentRepository.count());
+
         studentDao.setEncryptedPassword(bCryptPasswordEncoder.encode(studentDao.getPassword()));
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -59,9 +59,9 @@ public class StudentServiceImpl implements StudentService {
 
         ResponseTemplateVO vo = new ResponseTemplateVO();
         StudentEntity studentEntity = studentRepository.findByEmail(email);
-       System.out.println( studentEntity.getId());
+
         Marks marks =
-                restTemplate.getForObject("http://MARKS-SERVICE/marks/" + studentEntity.getId()
+                restTemplate.getForObject("http://MARKS-SERVICE/marks/" + studentEntity.getStudentId()
                         , Marks.class);
 System.out.println(marks);
         vo.setStudentEntity(studentEntity);

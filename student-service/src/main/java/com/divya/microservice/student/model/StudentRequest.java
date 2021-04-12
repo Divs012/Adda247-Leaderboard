@@ -14,8 +14,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class StudentRequest {
 
-    @NotNull
-    private String studentId;
+
     @NotNull(message = " can't ne null")
     @Size(min = 2, message = "Name can't be less than 2 character")
     private String studentName;

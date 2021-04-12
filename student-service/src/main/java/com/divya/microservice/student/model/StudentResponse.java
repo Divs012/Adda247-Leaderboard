@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class StudentResponse {
     private String studentName;
     private String email;
-    private String studentId;
+
 
 
 }

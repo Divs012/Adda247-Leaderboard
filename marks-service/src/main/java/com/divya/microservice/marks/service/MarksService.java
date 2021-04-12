@@ -1,41 +1,44 @@
 package com.divya.microservice.marks.service;
 
-import com.divya.microservice.marks.entity.MarksEntity;
+import com.divya.microservice.marks.entity.Marks;
+import com.divya.microservice.marks.entity.MarksId;
 import com.divya.microservice.marks.repository.MarksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Cacheable(cacheNames = "Marks")
 public class MarksService {
     @Autowired
     private MarksRepository marksRepository;
 
 
-    public MarksEntity saveMarks(MarksEntity marksEntity) {
-        return marksRepository.save(marksEntity);
+    public Marks saveMarks(Marks marks)
+    {
+        return marksRepository.save(marks);
     }
 
 
-    public MarksEntity findByStudentId(Long studentId) {
-        return marksRepository.findByStudentId(studentId);
-
-    }
 
 
-    public List<MarksEntity> getAllMarks() {
+    public List<Marks> getAllMarks() {
         return marksRepository.findAll();
     }
 
-    public void deleteByStudentId(Long studentId) {
-        marksRepository.deleteById(studentId);
+
+    public void deleteByMarksId(MarksId marksId) {
+        marksRepository.deleteById(marksId);
     }
 
-    public MarksEntity updateMarks(MarksEntity marksEntity) {
-        return marksRepository.save(marksEntity);
+    public Marks findByMarksId(MarksId marksId) {
+      return   marksRepository.findById(marksId).get();
     }
 
-
+    public Marks updateMarks(Marks marks) {
+      return   marksRepository.save(marks);
+    }
 }
 
