@@ -27,6 +27,7 @@ private Logger logger= LoggerFactory.getLogger(MarksController.class);
 
     @PostMapping("/add")
     public Marks saveMarks(@Valid @RequestBody MarksRequest marksRequest) {
+        logger.info("Adding marks {}", marksRequest);
         Marks marks = new Marks(new MarksId(marksRequest.getStudentId(),marksRequest.getSubjectId()),
         marksRequest.getMarks());
 
@@ -45,19 +46,22 @@ private Logger logger= LoggerFactory.getLogger(MarksController.class);
 
     @GetMapping("/all")
     public List<Marks> allMarks() {
+        List <Marks> records=marksService.getAllMarks();
+        logger.info("Fetching all marks");
         return marksService.getAllMarks();
     }
 
     @DeleteMapping("/delete/{marksId}")
     @CacheEvict(value = "Marks", allEntries = true)
     public void deleteByStudentId(@PathVariable("marksId") MarksId marksId) {
+        logger.info("Deleting marks with ID{}", marksId);
         marksService.deleteByMarksId(marksId);
 
     }
 
     @PutMapping("/update")
     public Marks UpdateMarks(@RequestBody MarksRequest marksRequest) {
-
+        logger.info("Updating marks {}", marksRequest);
         Marks marks = new Marks(new MarksId(marksRequest.getStudentId(),marksRequest.getSubjectId()),
                 marksRequest.getMarks());
 

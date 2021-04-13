@@ -70,7 +70,9 @@ Logger logger= LoggerFactory.getLogger(StudentController.class);
 
     @DeleteMapping("/delete/{id}")
     @CacheEvict(value = "Student", allEntries = true)
+
     public void deleteByStudentId(@PathVariable("id") Long studentId) {
+        logger.info(" Delete by id {}",studentId);
         studentService.deleteById(studentId);
     }
 

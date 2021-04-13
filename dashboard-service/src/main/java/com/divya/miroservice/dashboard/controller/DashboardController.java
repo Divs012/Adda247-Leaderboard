@@ -29,16 +29,12 @@ public class DashboardController {
 
     @GetMapping("/records")
     @Scheduled(cron = "0 */5 * * * *")
-   // @Scheduled(cron = "0 0 0/1 1/1 * ?")
     public List<Dashboard> allRecords(){
         logger.info("Fetching Records");
-        List <Dashboard> records=dashboardService.getAllRecords();
-        records.forEach(name -> {
-            System.out.println(name);
-        });
 
-
-      return   dashboardService.getAllRecords();
+        dashboardService.deleteAll();
+        dashboardService.addRecords();
+      return dashboardService.getRecords();
     }
 
 }
